@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Citizen Radio Patrols | City of Detroit</title>
+  <meta name="description" content="Application to help track citizen radio patrols in the City of Detroit">
+  <meta name="author" content="Edgar Montes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <!--build:css css/styles.min.css-->
+  <link rel="shortcut icon" type="image/png" href="/favicon.fc7b9a6e.ico">
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css" type="text/css">
+  <link href="/styles.8206c151.css" rel="stylesheet">
+  <!--endbuild-->
+<script src="/styles.8206c151.js"></script></head>
+<body>
+  <section id="user-type-section" class="active">
+    <article class="user-type-container">
+      <div class="">
+        <article class="user-type">
+          <h2>Welcome to the Citizen's Radio Patrol Map</h2>
+          <p>Sign up to join your local radio patrol or start one if your area doesn't have one already.</p>
+          <article class="user-type-btns">
+            <button type="button" name="button" data-btn-type="v-sign-up">START</button>
+          </article>
+        </article>
+      </div>
+    </article>
+  </section>
+  <section id="initial-loader-overlay" class="">
+    <article>
+      <div>
+        <div class="loader">
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__ball"></div>
+        </div>
+        <p>LOADING</p>
+      </div>
+    </article>
+  </section>
+  <section id="alert-overlay" class="">
+    <article>
+      <span class="close">x</span>
+      <div></div>
+    </article>
+  </section>
+  <section id="drill-down-overlay" class="">
+    <article>
+      <span class="close">x</span>
+      <div></div>
+    </article>
+  </section>
+  <header>
+    <section id="logo">
+      <article>
+        <img src="/logo-220x220.1c149876.jpg" alt="City of Detroit">
+      </article>
+    </section>
+    <section class="filter">
+      <article>
+        <h1>CITIZEN'S RADIO PATROL MAP</h1>
+      </article>
+    </section>
+  </header>
+  <main class="">
+    <section class="data-panel">
+      <section class="submit-form">
+        <article class="">
+          <label for="num-of-volunteers">
+            Number of Volunteers:
+            <input type="number" id="num-of-volunteers" name="num-of-volunteers" value="" placeholder="Enter number of volunteers">
+          </label>
+          <label for="scout-car">
+            Scout Car Area:
+            <input id="scout-car" type="text" list="scout-car-list" name="scout-car" placeholder="Select scout car area" value="">
+            <datalist id="scout-car-list">
+            </datalist>
+          </label>
+          <label for="">Date:</label>
+          <section id="hours-selection">
+            <p>
+              <input type="radio" id="2017-10-30 15:00:00" name="hours-group" checked="">
+              <label for="2017-10-30 15:00:00">Oct 30<sup>th</sup>, 2017</label>
+            </p>
+            <p>
+              <input type="radio" id="2017-10-31 15:00:00" name="hours-group">
+              <label for="2017-10-31 15:00:00">Oct 31<sup>th</sup>, 2017</label>
+            </p>
+          </section>
+          <button id="volunteer-submit-btn" type="button" name="button">SUBMIT</button>
+      </article></section>
+    </section>
+    <section class="map-panel">
+        <article id="map"></article>
+      </section>
+  </main>
+  <script src="/radio-patrols.e31bb0bc.js"></script>
+</body>
+</html>
