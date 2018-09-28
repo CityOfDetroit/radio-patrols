@@ -62,23 +62,18 @@ export default class Controller {
             "fill-opacity": .5
           },
           "filter": ["==", "fid", ""]
-        },
-        {
-          'id': 'radio-patrols-labels',
-          'type': 'symbol',
-          'source': 'radio-patrols',
-          "maxzoom": 12.5,
-          'layout': {
-            "text-font": ["Mark SC Offc Pro Bold"],
-            "text-field": "{name}",
-            "symbol-placement": "point",
-            "text-size": 22
-          },
-          'paint': {
-            'text-color': '#004544'
-          }
         }
       ]
     });
+  }
+  initialForm(ev,controller){
+    switch (ev) {
+      case 'v-sign-up':
+        document.querySelector('#user-type-section').className = 'hidden';
+        document.querySelector('main').className = '';
+        break;
+      default:
+
+    }
   }
 }
