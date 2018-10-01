@@ -721,9 +721,18 @@ main .data-panel.active {
   transition: all 0.2s ease-in-out;
 }
 main .data-panel {
+  position: relative;
   width: 0;
   padding: 0;
   transition: all 0.2s ease-in-out;
+}
+main #close-panel-btn {
+  position: absolute;
+  top: 2em;
+  right: 1em;
+  width: 3.5em;
+  height: 3.5em;
+  border-radius: 50%;
 }
 main .top-numbers {
   display: flex;
@@ -750,16 +759,16 @@ main .submit-form {
   overflow-y: auto;
   display: flex;
 }
-main .submit-form article {
+main .submit-form form {
   margin: auto;
   width: 30em;
 }
-main .submit-form article label {
+main .submit-form form label {
   display: block;
   margin-bottom: 1em;
   font-weight: bold;
 }
-main .submit-form article label input {
+main .submit-form form label input {
   width: 100%;
   background-color: #9fd5b3;
   padding: 1em;

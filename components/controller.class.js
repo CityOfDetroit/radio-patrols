@@ -10,7 +10,7 @@ export default class Controller {
     this.map = new Map({
       styleURL: 'mapbox://styles/mapbox',
       mapContainer: 'map',
-      geocoder: false,
+      geocoder: true,
       baseLayers: {
         street: 'streets-v10',
         satellite: 'cj774gftq3bwr2so2y6nqzvz4'

@@ -35773,7 +35773,7 @@ class Controller {
     this.map = new _mapClass.default({
       styleURL: 'mapbox://styles/mapbox',
       mapContainer: 'map',
-      geocoder: false,
+      geocoder: true,
       baseLayers: {
         street: 'streets-v10',
         satellite: 'cj774gftq3bwr2so2y6nqzvz4'
@@ -35870,7 +35870,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     }); // console.log(e.point);
 
     if (features.length) {
-      console.log(features[0]); // let date = new Date();
+      console.log(features[0]);
+      document.querySelector('.data-panel').className = 'data-panel active'; // let date = new Date();
       // date = date.getDate();
       // (date === 30) ? date = 'volunteers30' : date = 'volunteers31';
       // new mapboxgl.Popup()
@@ -35880,6 +35881,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     } else {
       console.log('no radio patrol');
     }
+  });
+  document.getElementById('close-panel-btn').addEventListener('click', function () {
+    document.querySelector('.data-panel.active').className = 'data-panel';
   });
   let startingBtns = document.querySelectorAll('#user-type-section button');
   startingBtns.forEach(function (btn) {
@@ -35921,7 +35925,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54638" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65324" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

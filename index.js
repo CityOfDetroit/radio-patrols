@@ -24,7 +24,7 @@ import mapboxgl from 'mapbox-gl';
       // console.log(e.point);
       if (features.length) {
         console.log(features[0]);
-        
+        document.querySelector('.data-panel').className = 'data-panel active';
         // let date = new Date();
         // date = date.getDate();
         // (date === 30) ? date = 'volunteers30' : date = 'volunteers31';
@@ -35,6 +35,9 @@ import mapboxgl from 'mapbox-gl';
       }else{
         console.log('no radio patrol');
       }
+  });
+  document.getElementById('close-panel-btn').addEventListener('click', function(){
+    document.querySelector('.data-panel.active').className = 'data-panel';
   });
   let startingBtns = document.querySelectorAll('#user-type-section button');
   startingBtns.forEach(function(btn){

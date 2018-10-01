@@ -481,10 +481,20 @@ main {
 	}
 
   .data-panel{
+		position: relative;
     width: 0;
 		padding: 0;
-    transition: all .2s ease-in-out;
-  }
+		transition: all .2s ease-in-out;
+	}
+
+	#close-panel-btn{
+		position: absolute;
+		top: 2em;
+		right: 1em;
+		width: 3.5em;
+		height: 3.5em;
+		border-radius: 50%;
+	}
 
 	.top-numbers{
 		display: flex;
@@ -515,7 +525,7 @@ main {
     overflow-y: auto;
     display: flex;
 
-    article{
+    form{
       margin: auto;
       width: 30em;
 
