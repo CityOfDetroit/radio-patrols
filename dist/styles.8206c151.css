@@ -330,6 +330,7 @@ img {
   display: flex;
 }
 #user-type-section.active .user-type-container div article {
+  text-align: center;
   width: 33em;
   position: relative;
   padding: 1em;
@@ -759,22 +760,29 @@ main .submit-form {
   overflow-y: auto;
   display: flex;
 }
-main .submit-form form {
+main .submit-form article {
   margin: auto;
   width: 30em;
 }
-main .submit-form form label {
+main .submit-form article label {
   display: block;
   margin-bottom: 1em;
   font-weight: bold;
 }
-main .submit-form form label input {
+main .submit-form article label input {
   width: 100%;
   background-color: #9fd5b3;
   padding: 1em;
   border: none;
   color: #004544;
   font-weight: bold;
+}
+main .submit-form article .patrol-info h3 {
+  text-align: center;
+  text-transform: uppercase;
+}
+main .submit-form article .patrol-info p {
+  text-align: center;
 }
 main .submit-form button {
   width: 100%;
@@ -1015,6 +1023,11 @@ main .map-panel {
   position: relative;
   flex: 1;
   padding: 1em;
+}
+main .map-panel #geocoder {
+  position: absolute;
+  top: 2em;
+  right: 2em;
 }
 main .map-panel #map {
   width: 100%;

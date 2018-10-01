@@ -1,51 +1,82 @@
-'use strict';
-import Controller from './components/controller.class.js';
-import mapboxgl from 'mapbox-gl';
-(function(){
-  let controller = new Controller();
-  controller.map.map.on("mousemove", function(e, parent = this) {
-    let features = this.queryRenderedFeatures(e.point, {
-        layers: ["radio-patrols-fill"]
+import Controller from './components/controller.class';
+
+(function start() {
+  const geoResults = function geoResults(ev){
+    controller.map.geocoder.setInput('');
+    controller.map.map.getSource('single-point').setData(ev.result.geometry);
+    const url = `http://gis.detroitmi.gov/arcgis/rest/services/DoIT/RadioPatrols/MapServer/0/query?where=&text=&objectIds=&time=&geometry=${ev.result.center[0]}%2C+${ev.result.center[1]}&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=fid%2C+name&returnGeometry=false&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=4326&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&f=pjson`;
+    fetch(url)
+    .then((resp) => resp.json())
+    .then(function (data) {
+      console.log(data);
+      if (data.features.length) {
+        const patrol = data.features[0].properties.name.split(' ').join('+');
+        document.getElementById('sheet-link').href = `https://app.smartsheet.com/b/form/f004f42fcd4345b89a35049a29ff408a?Patrol+ID=${data.features[0].properties.FID}&Patrol+Name=${patrol}`;
+        document.querySelector('.patrol-info').innerHTML = `<h3>Radio Patrol ${data.features[0].properties.name}</h3><p>Interested in becoming part of your local radio patrol? Follow the link to start the process.</p>`;
+        document.querySelector('.data-panel').className = 'data-panel active';
+        controller.geocoderOff = true;
+      } else {
+        const patrol = 'NEED+NAME';
+        document.getElementById('sheet-link').href = `https://app.smartsheet.com/b/form/0c25bae787bc40ef9707c95b2d9684e8`;
+        document.querySelector('.patrol-info').innerHTML = `<h3>NO RADIO PATROL FOUND</h3><p>Interested starting your new local radio patrlo? Follow the link to start the process.</p>`;
+        document.querySelector('.data-panel').className = 'data-panel active';
+        controller.geocoderOff = true;
+      }
     });
-    if(features.length){
-      this.setFilter("radio-patrols-hover", ["==", "FID", features[0].properties.FID]);
+  }
+  const controller = new Controller();
+
+  controller.map.map.on('mousemove', function (e, parent = this) {
+    const features = this.queryRenderedFeatures(e.point, {
+      layers: ['radio-patrols-fill']
+    });
+    if (features.length) {
+      this.setFilter('radio-patrols-hover', ['==', 'FID', features[0].properties.FID]);
     }
     this.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
   });
-  controller.map.map.on("mouseleave", "radio-patrols-fill", function() {
-    this.setFilter("radio-patrols-hover", ["==", "FID", ""]);
+  controller.map.map.on('mouseleave', 'radio-patrols-fill', function () {
+    this.setFilter('radio-patrols-hover', ['==', 'FID', '']);
   });
-  controller.map.map.on("click", function(e, parent = this) {
-    console.log(this);
-      
-    var features = this.queryRenderedFeatures(e.point, {
-        layers: ["radio-patrols-fill"]
-      });
-      // console.log(e.point);
-      if (features.length) {
-        console.log(features[0]);
-        document.querySelector('.data-panel').className = 'data-panel active';
-        // let date = new Date();
-        // date = date.getDate();
-        // (date === 30) ? date = 'volunteers30' : date = 'volunteers31';
-        // new mapboxgl.Popup()
-        //     .setLngLat(features[0].geometry.coordinates[0][0])
-        //     .setHTML('<h2>Volunteers: ' + controller.scoutVolunteers[features[0].properties.area][date] + '</h2>')
-        //     .addTo(this);
-      }else{
-        console.log('no radio patrol');
-      }
+  controller.map.map.on('click', function (e, parent = this) {
+    const features = this.queryRenderedFeatures(e.point, {
+      layers: ['radio-patrols-fill']
+    });
+    // console.log(e.point);
+    if (features.length) {
+      console.log(features[0]);
+      let patrol = features[0].properties.name.split(' ').join('+');
+      document.getElementById('sheet-link').href = `https://app.smartsheet.com/b/form/f004f42fcd4345b89a35049a29ff408a?Patrol+ID=${features[0].properties.FID}&Patrol+Name=${patrol}`;
+      document.querySelector('.patrol-info').innerHTML = `<h3>Radio Patrol ${features[0].properties.name}</h3><p>Interested in becoming part of your local radio patrol? Follow the link to start the process.</p>`;
+    } else {
+      console.log('no radio patrol');
+      let patrol = 'NEED+NAME';
+      document.getElementById('sheet-link').href = `https://app.smartsheet.com/b/form/0c25bae787bc40ef9707c95b2d9684e8`;
+      document.querySelector('.patrol-info').innerHTML = `<h3>NO RADIO PATROL FOUND</h3><p>Interested starting your new local radio patrlo? Follow the link to start the process.</p>`;
+    }
+    document.querySelector('.data-panel').className = 'data-panel active';
   });
-  document.getElementById('close-panel-btn').addEventListener('click', function(){
+  controller.map.geocoder.on('result', function (ev) {
+    console.log(ev);
+    if(controller.geocoderOff){
+      controller.geocoderOff = false;
+      geoResults(ev);
+    }else{
+      console.log('extra call');
+    }
+    
+  });
+
+  document.getElementById('close-panel-btn').addEventListener('click', function () {
     document.querySelector('.data-panel.active').className = 'data-panel';
   });
-  let startingBtns = document.querySelectorAll('#user-type-section button');
-  startingBtns.forEach(function(btn){
-    btn.addEventListener('click', function(ev){
+  const startingBtns = document.querySelectorAll('#user-type-section button');
+  startingBtns.forEach(function (btn) {
+    btn.addEventListener('click', function (ev) {
       controller.initialForm(ev.target.attributes[2].nodeValue, controller);
     });
   });
-  let reloadPage = function reloadPage(){
+  const reloadPage = function reloadPage() {
     window.location.reload(true);
   };
   document.getElementById('logo').addEventListener('click', reloadPage);

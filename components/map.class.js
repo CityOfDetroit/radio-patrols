@@ -6,11 +6,10 @@ export default class Map {
   constructor(init) {
     if(init.geocoder){
       this.geocoder = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken
-      });
-      this.geocoder.on('result', function(e) {
-        // console.log(ev);
-        Map.geocoderResultsFunction(e);
+        accessToken: mapboxgl.accessToken,
+        bbox: [-83.3437,42.2102,-82.8754,42.5197],
+        placeholder: "Enter your address",
+        flyTo: false,
       });
     }
     this.prevState = null;

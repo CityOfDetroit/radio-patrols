@@ -84,6 +84,7 @@ img{width: 100%;}
       display: flex;
 
       article{
+				text-align: center;
         width: 33em;
         position: relative;
         padding: 1em;
@@ -525,7 +526,7 @@ main {
     overflow-y: auto;
     display: flex;
 
-    form{
+    article{
       margin: auto;
       width: 30em;
 
@@ -543,7 +544,17 @@ main {
           font-weight: bold;
         }
       }
-    }
+
+			.patrol-info{
+				h3{
+					text-align: center;
+					text-transform: uppercase;
+				}
+				p{
+					text-align: center;
+				}
+			}
+		}
     button{
       width: 100%;
       font-weight: bold;
@@ -793,6 +804,12 @@ main {
     position: relative;
 		flex: 1;
 		padding: 1em;
+
+		#geocoder{
+			position: absolute;
+			top: 2em;
+			right: 2em;
+		}
 
 		#map{
 			width: 100%;
