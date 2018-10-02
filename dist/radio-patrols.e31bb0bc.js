@@ -31051,13 +31051,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
       if (data.features.length) {
         const patrol = data.features[0].properties.name.split(' ').join('+');
         document.getElementById('sheet-link').href = `https://app.smartsheet.com/b/form/f004f42fcd4345b89a35049a29ff408a?Patrol+ID=${data.features[0].properties.FID}&Patrol+Name=${patrol}`;
-        document.querySelector('.patrol-info').innerHTML = `<h3>Radio Patrol ${data.features[0].properties.name}</h3><p>Interested in becoming part of your local radio patrol? Follow the link to start the process.</p>`;
+        document.querySelector('.patrol-info').innerHTML = `<h3>Radio Patrol ${data.features[0].properties.name}</h3><p>Interested in becoming part of your local radio patrol? Follow the link to start the process.</p><p><small>The Radio Patrol application process is managed by the Detroit Police Department. Once you complete the sign up, someone will contact you regarding the application process. Residents who complete the online form will be contacted after October 31 to start the application process.</small></p>`;
         document.querySelector('.data-panel').className = 'data-panel active';
         controller.geocoderOff = true;
       } else {
         const patrol = 'NEED+NAME';
         document.getElementById('sheet-link').href = `https://app.smartsheet.com/b/form/0c25bae787bc40ef9707c95b2d9684e8`;
-        document.querySelector('.patrol-info').innerHTML = `<h3>NO RADIO PATROL FOUND</h3><p>Interested starting your new local radio patrlo? Follow the link to start the process.</p>`;
+        document.querySelector('.patrol-info').innerHTML = `<h3>NO RADIO PATROL FOUND</h3><p>Interested starting your new local radio patrlo? Follow the link to start the process.</p><p><small>The Radio Patrol application process is managed by the Detroit Police Department. Once you complete the sign up, someone will contact you regarding the application process. Residents who complete the online form will be contacted after October 31 to start the application process.</small></p>`;
         document.querySelector('.data-panel').className = 'data-panel active';
         controller.geocoderOff = true;
       }
@@ -31088,12 +31088,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
       console.log(features[0]);
       let patrol = features[0].properties.name.split(' ').join('+');
       document.getElementById('sheet-link').href = `https://app.smartsheet.com/b/form/f004f42fcd4345b89a35049a29ff408a?Patrol+ID=${features[0].properties.FID}&Patrol+Name=${patrol}`;
-      document.querySelector('.patrol-info').innerHTML = `<h3>Radio Patrol ${features[0].properties.name}</h3><p>Interested in becoming part of your local radio patrol? Follow the link to start the process.</p>`;
+      document.querySelector('.patrol-info').innerHTML = `<h3>Radio Patrol ${features[0].properties.name}</h3><p>Interested in becoming part of your local radio patrol? Follow the link to start the process.</p><p><small>The Radio Patrol application process is managed by the Detroit Police Department. Once you complete the sign up, someone will contact you regarding the application process. Residents who complete the online form will be contacted after October 31 to start the application process.</small></p>`;
     } else {
       console.log('no radio patrol');
       let patrol = 'NEED+NAME';
       document.getElementById('sheet-link').href = `https://app.smartsheet.com/b/form/0c25bae787bc40ef9707c95b2d9684e8`;
-      document.querySelector('.patrol-info').innerHTML = `<h3>NO RADIO PATROL FOUND</h3><p>Interested starting your new local radio patrlo? Follow the link to start the process.</p>`;
+      document.querySelector('.patrol-info').innerHTML = `<h3>NO RADIO PATROL FOUND</h3><p>Interested starting your new local radio patrlo? Follow the link to start the process.</p><p><small>The Radio Patrol application process is managed by the Detroit Police Department. Once you complete the sign up, someone will contact you regarding the application process. Residents who complete the online form will be contacted after October 31 to start the application process.</small></p>`;
     }
 
     document.querySelector('.data-panel').className = 'data-panel active';
@@ -31151,7 +31151,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59705" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49324" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
