@@ -4,7 +4,9 @@
   "description": "Application to help track citizen radio patrols in the City of Detroit",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html --https --no-cache -p 3000 --open",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build index.html --no-cache --public-url '.'"
   },
   "repository": {
     "type": "git",
